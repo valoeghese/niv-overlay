@@ -8,7 +8,7 @@ x="0"
 y="0"
 
 root.geometry(f'250x150+{x}+{y}')
-# to remove the titalbar 
+# to remove the titlebar 
 root.overrideredirect(True)
 
 # to make the window transparent  
@@ -21,10 +21,10 @@ root.config(bg="red")
 l=Label(root,text="HI this is an overlay",fg="white",font=(60),bg="red")
 l.pack()
 
-b=Button(root,text="click me to print somthing",command=lambda:print("this is something"))
+b=Button(root,text="Exit",command=lambda:exit(0))
 b.pack()
 
-#make window to be always on top 
+# make window to be always on top 
 root.wm_attributes("-topmost", 1) 
 
 
