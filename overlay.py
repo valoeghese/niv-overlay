@@ -66,7 +66,7 @@ l = Canvas(root, width=screen_width//2, height=screen_height, bg='black',
             bd=0)
 l.place_configure(x=screen_width//4, y=0)
 
-def update_label_position(text):
+def update_label(text):
     #text = l.cget("text")
     line_count = calculate_lines(text, screen_width//2)
     
@@ -91,7 +91,7 @@ def update_label_position(text):
     
     l.create_text(shadow_dist, y_position, anchor='w', text=text, width=screen_width//2 - shadow_dist, font=afont, fill='white')
 
-update_label_position("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")
+update_label("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")
 
 b=Button(root,text="Exit",command=lambda:exit(0),fg='#2b2b2b')
 b.place_configure(x=screen_width-100, y=screen_height-100)
