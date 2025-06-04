@@ -4,6 +4,7 @@ import tkinter.font as tkfont
 import keyboard
 import threading
 import os
+import math
 
 root=Tk()
 
@@ -51,18 +52,19 @@ root.config(bg="black")
 
 def calculate_lines(text, width):
     """Calculate the number of lines for the given text and width using a temporary Text widget."""
-    temp_text = Text(root, wrap='word', width=width, height=1, font=afont)
+    temp_text = Text(root, wrap='word', height=0, font=afont)
     temp_text.insert('1.0', text)
-    temp_text.pack_forget()  # Don't display it, just calculate
-    line_count = int(temp_text.index('end-1c').split('.')[0])  # Get the line count
+    temp_text.place_configure(width=width, height=1000)
+    #print(temp_text.index('end-1c'))
+    line_count = math.ceil(float(temp_text.index('end-1c')))  # Get the line count
+
     temp_text.destroy()
     return line_count
 
-l=Label(root,text="In the beginning there was the Word and the Word was with God and the Word was God.",fg="white",bg="black",font=afont,wraplength=screen_width//2)
+l=Label(root,text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",fg="white",bg="black",font=afont,wraplength=screen_width//2)
 
 def update_label_position():
     line_count = calculate_lines(l.cget("text"), screen_width//2)
-    print(line_count)
     
     line_height = afont.metrics('linespace')
     text_height = line_count * line_height
@@ -71,7 +73,8 @@ def update_label_position():
     y_position = screen_height - (screen_height // 6) - text_height
     
     # Update the position of the text widget
-    l.place_configure(x=screen_width//4, y=y_position, height=text_height)
+    l.place_configure(x=screen_width//4, y=y_position, width=screen_width//2, height=text_height)
+
 update_label_position()
 
 b=Button(root,text="Exit",command=lambda:exit(0))
