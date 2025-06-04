@@ -7,10 +7,10 @@ Requires keyboard
 
 Global keyboard listener requires admin:
 ```sh
-sudo python ./overlay.py
+sudo pythonw ./overlay.py
 ```
 ```powershell
-Start-Process python .\overlay.py -Verb RunAs 
+Start-Process pythonw .\overlay.py -Verb RunAs 
 ```
 
 ## Credits
