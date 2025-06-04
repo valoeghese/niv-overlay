@@ -61,10 +61,14 @@ def calculate_lines(text, width):
     temp_text.destroy()
     return line_count
 
-l=Label(root,text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",fg="white",bg="black",font=afont,wraplength=screen_width//2)
+l = Canvas(root, width=screen_width//2, height=screen_height, bg='black',
+           highlightthickness=0,  # removes the border
+            bd=0)
+l.place_configure(x=screen_width//4, y=0)
 
-def update_label_position():
-    line_count = calculate_lines(l.cget("text"), screen_width//2)
+def update_label_position(text):
+    #text = l.cget("text")
+    line_count = calculate_lines(text, screen_width//2)
     
     line_height = afont.metrics('linespace')
     text_height = line_count * line_height
@@ -72,12 +76,24 @@ def update_label_position():
     # Calculate the y-position so that the bottom of the text is 1/6 from the screen's bottom
     y_position = screen_height - (screen_height // 6) - text_height
     
-    # Update the position of the text widget
-    l.place_configure(x=screen_width//4, y=y_position, width=screen_width//2, height=text_height)
+    # Update the position of the text
+    l.delete("all")
 
-update_label_position()
+    # shadow
+    i = 0
+    shadow_dist = 2
+    for xo in [-shadow_dist, 0, shadow_dist]:
+        for yo in [-shadow_dist, 0, shadow_dist]:
+            if xo == 0 and yo == 0:
+                continue
+            l.create_text(0 + xo, y_position + yo, anchor='w', text=text, width=screen_width//2, font=afont, fill='#2b2b2b')
+            i += 1
+    
+    l.create_text(0, y_position, anchor='w', text=text, width=screen_width//2, font=afont, fill='white')
 
-b=Button(root,text="Exit",command=lambda:exit(0))
+update_label_position("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")
+
+b=Button(root,text="Exit",command=lambda:exit(0),fg='#2b2b2b')
 b.place_configure(x=screen_width-100, y=screen_height-100)
 
 
