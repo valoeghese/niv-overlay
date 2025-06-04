@@ -86,10 +86,10 @@ def update_label_position(text):
         for yo in [-shadow_dist, 0, shadow_dist]:
             if xo == 0 and yo == 0:
                 continue
-            l.create_text(0 + xo, y_position + yo, anchor='w', text=text, width=screen_width//2, font=afont, fill='#2b2b2b')
+            l.create_text(shadow_dist + xo, y_position + yo, anchor='w', text=text, width=screen_width//2 - shadow_dist, font=afont, fill='#2b2b2b')
             i += 1
     
-    l.create_text(0, y_position, anchor='w', text=text, width=screen_width//2, font=afont, fill='white')
+    l.create_text(shadow_dist, y_position, anchor='w', text=text, width=screen_width//2 - shadow_dist, font=afont, fill='white')
 
 update_label_position("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")
 
